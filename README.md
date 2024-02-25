@@ -3,7 +3,7 @@
 ![icon128](https://github.com/Myst1cX/edge-immersive-reader-extension/assets/97919309/f7a391b6-c423-490a-8cf1-3e06f5f0b318
 )
 
-https://github.com/Myst1cX/immersive-reddit-extension/blob/56f4c6a1860fecd686f463d783a2d01eb7c8c72e/icons/icon128.png
+![icon128](https://github.com/Myst1cX/immersive-reddit-extension/blob/56f4c6a1860fecd686f463d783a2d01eb7c8c72e/icons/icon128.png)
 
 A browser extension with the aim to improve the readability of Reddit pages.
 The extension works seamlessly on Microsoft Edge, enhancing the browsing experience by transforming standard URLs
