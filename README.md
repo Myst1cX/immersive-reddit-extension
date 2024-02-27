@@ -42,6 +42,8 @@ The extension now automatically copies the transformed URL to your clipboard, be
 
 1. Interface improvement
 2. Dark mode
+3. Automatically transform any Reddit page's URL into the Microsoft Edge's Immersive Reader format upon opening it, without the needed press of a button
+4. Ability to create an exclusion list of subreddits on which the extension is disabled by default
 
 ## Development
 
