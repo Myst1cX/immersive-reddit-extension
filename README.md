@@ -10,6 +10,7 @@ Please note that this extension is being tested and developed solely on the Edge
 Support for other browsers is not coming. 
 
 ## Features
+A list of extension features, divided by its respective version:
 ### BETA VERSION (v2.0.0)
 The extension automatically copies the transformed URL to your clipboard, before opening the page in a new tab.
 (If you don't require this feature, feel free to continue using the ALPHA version)
