@@ -10,12 +10,11 @@ Please note that this extension is being tested and developed solely on the Edge
 Support for other browsers is not coming. 
 
 ## Features
-A list of extension features, divided by its respective version:
+
+The extension transforms the standard URL of a Reddit page into a more readable format using the read:// protocol that integrates the Microsoft Edge's Immersive Reader feature and opens the page in a new tab.
 ### BETA VERSION (v2.0.0)
-The extension automatically copies the transformed URL to your clipboard, before opening the page in a new tab.
+The extension now automatically copies the transformed URL to your clipboard, before opening the page in a new tab.
 (If you don't require this feature, feel free to continue using the ALPHA version)
-### ALPHA VERSION (v1.0.0)
-Transforms the standard URL of a Reddit page into a more readable format using the read:// protocol that integrates the Microsoft Edge's Immersive Reader feature and opens the page in a new tab.
 
 ## Screenshots
 
