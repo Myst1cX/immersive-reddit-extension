@@ -40,7 +40,8 @@ The extension now automatically copies the transformed URL to your clipboard, be
 
 ## Roadmap
 
-(Coming Soon)
+1. Interface improvement
+2. Dark mode
 
 ## Development
 
