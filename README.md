@@ -12,9 +12,8 @@ Support for other browsers is not coming.
 ## Features
 #### ALPHA VERSION(v1.0.0)
 The extension transforms the standard URL of a Reddit page into a more readable format using the read:// protocol that integrates the Microsoft Edge's Immersive Reader feature and opens the page in a new tab.
-#### BETA VERSION(v2.0.0)              
-The extension now automatically copies the transformed URL to your clipboard, before opening the page in a new tab.
-(If you don't require this feature, feel free to continue using the ALPHA version)
+#### READDIT(v3.00)              
+(Description will be added soon)
 
 ## Screenshots
 
@@ -32,18 +31,19 @@ The extension now automatically copies the transformed URL to your clipboard, be
 ## Usage
 
 1. Launch the extension by clicking on its icon in the browser toolbar.
-2. Click on the "Immersive Reddit" button to encode the Reddit link.
-3. A pop-up will inform you the encoded link has been successfully copied to your clipboard.
-4. Once you click "OK" the browser will open the encoded link ia new tab.
-5. Enjoy Microsoft Edge's improved reading experience :)
+2. Enter the names of subreddits for which you wish to enable the extension. You can add multiple at once by separating each input with a comma. You don't need to put r/ in front of each subreddit.
+FOR EXAMPLE: "nosleep","DarkTales","gtripp14" is sufficient. --> the quotation marks are not necessary
+3. If you make a typo, you can always edit or delete the subreddit from the list.
+4. Head to your chosen subreddit.
+NOTE: The extension does not transform subreddits themselves, only their posts. Once you click on a post inside the subreddit, it will automatically open in Microsoft Edge's Immersive Reader mode. 
+5. Enjoy the improved reading experience :)
 
 
 ## Roadmap
 
 1. Interface improvement
 2. Dark mode
-3. Automatically transform any Reddit page's URL into the Microsoft Edge's Immersive Reader format upon opening it, without the needed press of a button
-4. Ability to create an exclusion list of subreddits on which the extension is disabled by default
+3. Ability to import/export the list of subreddits. 
 
 ## Development
 
