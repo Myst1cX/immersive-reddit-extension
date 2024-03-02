@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Immersive Reader</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immersive Reddit</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="popup.js"></script>
+  <style>
+    .delete-button {
+      background-color: #EF4444;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .subreddit-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .subreddit-text {
+      flex-grow: 1;
+      margin-right: 8px;
+      padding: 2px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .edit-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .inline-edit-input {
+      width: 100%;
+    }
+  </style>
 </head>
-<body>
-  <button id="encodeButton">Immersive Reddit</button>
+<body class="bg-gray-100 p-4">
+  <div class="max-w-md mx-auto bg-white rounded-md p-8 shadow-md">
+    <!-- Replace the title with an image logo -->
+    <img src="logo/Readdit.jpg" alt="Extension Logo" class="mx-auto mb-4">
+
+    <div class="mb-4">
+      <label for="addEnabledSubreddit" class="block font-bold">Enabled Subreddits</label>
+      <textarea id="addEnabledSubreddit" placeholder="Enter subreddit, separated by commas" class="w-full border border-gray-300 rounded p-2"></textarea>
+    </div>
+
+    <div id="enabledSubreddits" class="mb-4">
+      <!-- Enabled Subreddits will be displayed here -->
+    </div>
+
+    <button id="addEnabledSubredditBtn" class="bg-green-500 text-white font-bold py-2 px-4 rounded mt-2">Add Subreddit</button>
+  </div>
 </body>
 </html>

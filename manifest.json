@@ -4,8 +4,20 @@
   "version": "1.0",
   "description": "Add 'read://' prefix to Reddit URLs",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage",
+    "tabs"
   ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.reddit.com/*"],
+      "js": ["content.js"]
+    }
+  ], 
   "browser_action": {
     "default_icon": {
       "16": "icons/icon16.png",
