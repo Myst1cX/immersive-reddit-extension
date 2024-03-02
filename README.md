@@ -1,4 +1,4 @@
-# EDGE IMMERSIVE READER EXTENSION
+# READDIT - IMMERSIVE READER EXTENSION FOR EDGE BROWSER
 
 ![icon128](
 https://github.com/Myst1cX/immersive-reddit-extension/blob/main/icons%2Ficon128.png)
