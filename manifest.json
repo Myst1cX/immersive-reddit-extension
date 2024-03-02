@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Immersive Reader",
-  "version": "1.0",
+  "version": "3.0",
   "description": "Add 'read://' prefix to Reddit URLs",
   "permissions": [
     "activeTab",
