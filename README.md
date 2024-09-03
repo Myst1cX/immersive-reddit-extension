@@ -60,7 +60,7 @@ The extension does not transform subreddits themselves, only their posts. Once y
 ## Roadmap
 
 >Interface improvement,                       
->Ability to import/export the list of subreddits. 
+>Import/export the list of subreddits.        
 
 ## Development
 
@@ -74,9 +74,9 @@ To further develop and customize the extension:
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+>Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the [MIT License] - see the [LICENSE](https://github.com/Myst1cX/immersive-reddit-extension/blob/main/LICENSE.txt) file for details.
+>This project is licensed under the [MIT License] - see the [LICENSE](https://github.com/Myst1cX/immersive-reddit-extension/blob/main/LICENSE.txt) file for details.
 
