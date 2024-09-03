@@ -18,11 +18,11 @@ Support for other browsers is not coming.
 #### READDIT STABLE (v4.00)
 THE EXTENSION UI HAS BEEN REVAMPED.
 NEW FEATURES ARE LISTED BELOW ⭐
->Search bar:
+>Search bar:                                  
 Allows the user to easily find a certain subreddit inside their added subreddits list.                                         
->Edit button:
+>Edit button:                                
 Allows editing multiple added subreddits at once.                                        
->Light/Dark mode switch:
+>Light/Dark mode switch:                       
 Press on the lightbulb icon in the top right corner.
 
 
