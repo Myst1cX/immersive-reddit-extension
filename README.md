@@ -42,14 +42,17 @@ Works by pressing on the lighbulb icon in the top right corner.
 ## Usage
 
 1. Launch the extension by clicking on its icon in the browser toolbar.
-2. Enter the names of subreddits for which you wish to enable the extension. You can add multiple at once by separating each input with a comma. You don't need to put r/ in front of each subreddit.                   
-NOTE: Quotation marks are not necessary and spaces between commas are optional.                
+2. Enter the names of subreddits for which you wish to enable the extension. You can add multiple at once by separating each input with a comma.                                              
+NOTE:                                          
+You don't need to put r/ in front of each subreddit.                                     
+Quotation marks are not necessary and spaces between commas are optional.                         
 FOR EXAMPLE:                                          "nosleep","DarkTales","gtripp14" is sufficient.                                    
 3. If you make a typo, you can always edit or delete the subreddit from the list.
 4. Use the "Search bar" to easily find a certain subreddit inside your added subreddits list.
 5. Click on the "Lighbulb" to toggle between light and dark mode.   
 6. Head to your chosen subreddit.
-NOTE: The extension does not transform subreddits themselves, only their posts. Once you click on a post inside the subreddit, it will automatically open in Microsoft Edge's Immersive Reader mode.      
+NOTE:                                          
+The extension does not transform subreddits themselves, only their posts. Once you click on a post inside the subreddit, it will automatically open in Microsoft Edge's Immersive Reader mode.      
 7. Enjoy the improved reading experience :)
 
 
