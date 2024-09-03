@@ -15,6 +15,13 @@ Support for other browsers is not coming.
 The extension transforms the standard URL of a Reddit page into a more readable format using the read:// protocol that integrates the Microsoft Edge's Immersive Reader feature and opens the page in a new tab. 
 #### READDIT (v3.00)              
 The user can choose for which subreddits they wish to enable the extension. Multiple subreddits can be added at once, by separating each input with a comma. As before, the extension transforms the standard URL of a Reddit page into a more readable format using the read:// protocol that integrates the Microsoft Edge's Immersive Reader feature. It no longer opens the transformed page in a new tab, but reloads the page instead. The extension only transforms the subreddit's posts once they are clicked, which means that the user can freely browse the subreddit to locate the story they wish to read.
+#### READDIT STABLE (v4.00)
+This version is based on the v3.00.
+THE EXTENSION UI HAS BEEN COMPLETELY REVAMPED.
+NEW FEATURES:
+1. Search bar: Allows the user to easily find a certain subreddit inside their added subreddits list. Makes it easier to "Edit" or "Remove" said subreddit.
+2. Light/Dark mode switch:
+Works by pressing on the lighbulb icon in the top right corner.
 
 ## Screenshots
 
