@@ -41,7 +41,7 @@ Works by pressing on the lighbulb icon in the top right corner.
 
 ## Usage
 
->Launch the extension by clicking on its icon in the browser toolbar.
+>Launch the extension by clicking on its icon in the browser toolbar.                  
 >Enter the names of subreddits for which you wish to enable the extension.               
 You can add multiple at once by separating each input with a comma.                                              
 >NOTE:                                      
