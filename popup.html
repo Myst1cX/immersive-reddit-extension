@@ -3,60 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Immersive Reddit</title>
+  <title>Readdit</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="popup.js"></script>
   <style>
-    .delete-button {
-      background-color: #EF4444;
-      color: white;
-      padding: 2px 6px;
-      border-radius: 3px;
+    /* Light Mode Styles */
+    .light-mode {
+      background-color: #ffffff; /* White background for the entire interface in light mode */
+      color: #000; /* Light mode text color */
     }
 
-    .subreddit-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
+    .light-mode .bg-white {
+      background-color: #ffffff; /* White background for containers in light mode */
     }
 
-    .subreddit-text {
-      flex-grow: 1;
-      margin-right: 8px;
-      padding: 2px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
+    .light-mode .border-main {
+      border-color: #d1d5db; /* Light border color */
     }
 
-    .edit-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 2px 6px;
-      border-radius: 3px;
-      cursor: pointer;
+    .light-mode .remove-button {
+      background-color: #EF4444; /* Red background for remove button in light mode */
+      color: white; /* White text color for remove button */
+      font-size: 12px; /* Font size for remove button */
+      padding: 3px 6px; /* Padding for remove button */
+      border-radius: 3px; /* Rounded corners for remove button */
+      border: none; /* Remove border */
     }
 
-    .inline-edit-input {
-      width: 100%;
+    /* Dark Mode Styles */
+    .dark-mode {
+      background-color: #1f2937; /* Black background color */
+      color: #f9fafb; /* Dark mode text color */
+    }
+
+    .dark-mode .bg-white {
+      background-color: #1f2937; /* Uniform black background for containers */
+    }
+
+    .dark-mode .border-main {
+      border-color: #4b5563; /* Dark border color */
+    }
+
+    .dark-mode .remove-button {
+      background-color: #EF4444; /* Red background for remove button */
+      color: white; /* White text color for remove button */
+      font-size: 12px; /* Font size for remove button */
+      padding: 3px 6px; /* Padding for remove button */
+      border-radius: 3px; /* Rounded corners for remove button */
+      border: none; /* Remove border */
+    }
+
+    .dark-mode .edit-button {
+      background-color: #2563eb; /* Dark blue button for edit */
+    }
+
+    .dark-mode .table-container {
+      background-color: #1f2937; /* Black background for table container */
+    }
+
+    .dark-mode input,
+    .dark-mode textarea {
+      background-color: #1f2937; /* Slightly lighter black for inputs and textareas */
+      color: #f9fafb; /* Light text color for inputs and textareas */
+      border: 1px solid #4b5563; /* Dark border for inputs and textareas */
+    }
+
+    .dark-mode .bg-green-500 {
+      background-color: #10b981; /* Dark green button for add */
+    }
+
+    .dark-mode .bg-blue-500 {
+      background-color: #3b82f6; /* Dark blue button for edit */
+    }
+
+    /* Light Mode Table Row Styling */
+    .light-mode tbody {
+      background-color: #f9fafb; /* Light background for table rows in light mode */
+    }
+
+    /* Light Mode Scrollbar Styling */
+    .light-mode textarea::-webkit-scrollbar {
+      width: 8px; /* Width of the scrollbar */
+    }
+
+    .light-mode textarea::-webkit-scrollbar-track {
+      background: #ffffff; /* White background for scrollbar track */
+    }
+
+    .light-mode textarea::-webkit-scrollbar-thumb {
+      background: #d1d5db; /* Light gray color for scrollbar thumb */
+      border-radius: 10px; /* Rounded corners for scrollbar thumb */
+    }
+
+    /* Dark Mode Scrollbar Styling */
+    .dark-mode textarea::-webkit-scrollbar {
+      width: 8px; /* Width of the scrollbar */
+    }
+
+    .dark-mode textarea::-webkit-scrollbar-track {
+      background: #1f2937; /* Dark background for scrollbar track */
+    }
+
+    .dark-mode textarea::-webkit-scrollbar-thumb {
+      background: #4b5563; /* Darker color for scrollbar thumb */
+      border-radius: 10px; /* Rounded corners for scrollbar thumb */
+    }
+
+    /* Scrollbar styling for Firefox */
+    textarea {
+      scrollbar-width: thin; /* Set scrollbar width */
+    }
+
+    /* Light Mode Scrollbar Color for Firefox */
+    .light-mode textarea {
+      scrollbar-color: #d1d5db #ffffff; /* Color of scrollbar thumb and track */
+    }
+
+    /* Dark Mode Scrollbar Color for Firefox */
+    .dark-mode textarea {
+      scrollbar-color: #4b5563 #1f2937; /* Color of scrollbar thumb and track */
+    }
+
+    /* Fixed height for textarea and prevent resizing */
+    #addEnabledSubreddit {    
+      height: 50px; /* Set a fixed height */
+      resize: none; /* Prevent resizing */
+    }
+
+    /* Fixed height for enabledSubreddits container and prevent resizing */
+    #enabledSubredditsContainer {
+      height: 40px; /* Set a fixed height */
+      resize: none; /* Prevent resizing */
+    }
+
+    /* Scrollable container for enabled subreddits */
+    #enabledSubredditsContainer {
+      overflow-y: auto; /* Enable vertical scrolling */
+      overflow-x: hidden; /* Disable horizontal scrolling */
+    }
+
+    /* Customize scrollbar for the container */
+    #enabledSubredditsContainer::-webkit-scrollbar {
+      width: 8px; /* Width of the scrollbar */
+    }
+
+    #enabledSubredditsContainer::-webkit-scrollbar-track {
+      background: #ffffff; /* White background for scrollbar track in light mode */
+    }
+
+    #enabledSubredditsContainer::-webkit-scrollbar-thumb {
+      background: #d1d5db; /* Light gray color for scrollbar thumb in light mode */
+      border-radius: 10px; /* Rounded corners for scrollbar thumb */
+    }
+
+    /* Dark Mode Scrollbar Styling */
+    .dark-mode #enabledSubredditsContainer::-webkit-scrollbar-track {
+      background: #1f2937; /* Dark background for scrollbar track in dark mode */
+    }
+
+    .dark-mode #enabledSubredditsContainer::-webkit-scrollbar-thumb {
+      background: #4b5563; /* Darker color for scrollbar thumb in dark mode */
+      border-radius: 10px; /* Rounded corners for scrollbar thumb */
+    }
+
+    /* Scrollbar styling for Firefox */
+    #enabledSubredditsContainer {
+      scrollbar-width: thin; /* Set scrollbar width */
+    }
+
+    /* Light Mode Scrollbar Color for Firefox */
+    .light-mode #enabledSubredditsContainer {
+      scrollbar-color: #d1d5db #ffffff; /* Color of scrollbar thumb and track */
+    }
+
+    /* Dark Mode Scrollbar Color for Firefox */
+    .dark-mode #enabledSubredditsContainer {
+      scrollbar-color: #4b5563 #1f2937; /* Color of scrollbar thumb and track */
+    }
+
+    /* Common Button Styles */
+    .full-width-btn {
+      width: 100%; /* Ensure full width for both buttons */
+      display: block;
+    }
+
+    /* Specific Button Styling */
+    #addEnabledSubredditBtn {
+      margin-top: -18px; /* Closer spacing with textarea */
+      margin-bottom: 2px; /* Closer spacing with search bar */
+    }
+
+    #editSubredditsBtn {
+      margin-top: -14px; /* Closer spacing with search bar */
+    }
+
+    /* Lightbulb Button Styles */
+    #toggleDarkModeBtn {
+      width: 50px; /* Width of the lightbulb icon */
+      height: 50px; /* Height of the lightbulb icon */
+      position: absolute; /* Positioning the button */
+      top: 0; /* Top position */
+      right: 0; /* Right position */
+      margin: -23px; /* Add some margin to keep it away from the edges */
+      cursor: pointer; /* Cursor pointer for clickable icon */
     }
   </style>
 </head>
-<body class="bg-gray-100 p-4">
-  <div class="max-w-md mx-auto bg-white rounded-md p-8 shadow-md">
+<body class="light-mode p-4">
+  <div class="max-w-md mx-auto bg-white rounded-md p-8 shadow-md relative">
+    <!-- Lightbulb toggle button -->
+    <img id="toggleDarkModeBtn" src="icons/lightbulb48.png" alt="Toggle Dark Mode">
+
     <!-- Replace the title with an image logo -->
     <img src="logo/Readdit.png" alt="Extension Logo" class="mx-auto mb-4">
 
     <div class="mb-4">
       <label for="addEnabledSubreddit" class="block font-bold">Enabled Subreddits</label>
-      <textarea id="addEnabledSubreddit" placeholder="Enter subreddit, separated by commas" class="w-full border border-gray-300 rounded p-2"></textarea>
+      <textarea id="addEnabledSubreddit" placeholder="Enter subreddit, separated by commas" class="w-full border border-main rounded p-2"></textarea>
     </div>
 
-    <div id="enabledSubreddits" class="mb-4">
-      <!-- Enabled Subreddits will be displayed here -->
+    <button id="addEnabledSubredditBtn" class="bg-green-500 text-white font-bold py-2 px-4 rounded full-width-btn">Add Subreddits</button>
+
+    <div class="mb-4">
+      <input type="text" id="searchSubreddits" class="w-full border border-main rounded-md py-2 px-3" placeholder="Search subreddits">
     </div>
 
-    <button id="addEnabledSubredditBtn" class="bg-green-500 text-white font-bold py-2 px-4 rounded mt-2">Add Subreddit</button>
+    <div id="enabledSubredditsContainer" class="table-container mb-4">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="border-main border-b px-4 py-2 text-left">Subreddit</th>
+            <th class="border-main border-b px-4 py-2 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="enabledSubreddits">
+          <!-- Enabled Subreddits will be displayed here -->
+        </tbody>
+      </table>
+    </div>
+
+    <button id="editSubredditsBtn" class="bg-blue-500 text-white font-bold py-2 px-4 rounded full-width-btn">Edit</button>
   </div>
 </body>
 </html>

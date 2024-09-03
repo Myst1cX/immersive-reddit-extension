@@ -1,16 +1,45 @@
+// popup.js
+
 document.addEventListener('DOMContentLoaded', function () {
     loadSubredditUI();
 
     document.getElementById('addEnabledSubredditBtn').addEventListener('click', function () {
-        toggleAddEdit();
+        addEnabledSubreddits(); // Updated function to handle multiple subreddits
     });
 
-    // Trigger transformation logic when the popup is opened
+    document.getElementById('editSubredditsBtn').addEventListener('click', function () {
+        toggleEditMode(); // Handle edit mode for the subreddits
+    });
+
+    document.getElementById('searchSubreddits').addEventListener('input', function () {
+        searchSubreddits(this.value); // Handle subreddit search
+    });
+
+    document.getElementById('toggleDarkModeBtn').addEventListener('click', function () {
+        toggleDarkMode(); // Handle dark mode toggle
+    });
+
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         var currentUrl = tabs[0].url;
         transformRedditPage(tabs[0].id, currentUrl);
     });
 });
+
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeIcon = 'icons/lightbulb48.png'; // Assuming this is the dark mode icon
+    const lightModeIcon = 'icons/lightbulb48.png'; // Assuming this is the light mode icon
+
+    if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        document.getElementById('toggleDarkModeBtn').src = darkModeIcon; // Change to dark mode icon
+    } else {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        document.getElementById('toggleDarkModeBtn').src = lightModeIcon; // Change to light mode icon
+    }
+}
 
 function loadSubredditUI() {
     chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
@@ -20,163 +49,119 @@ function loadSubredditUI() {
 }
 
 function displaySubredditUI(enabledSubreddits) {
-    var enabledSubredditsDiv = document.getElementById('enabledSubreddits');
-    if (enabledSubredditsDiv) {
-        // Clear the existing content
-        enabledSubredditsDiv.innerHTML = "";
+    var enabledSubredditsTbody = document.getElementById('enabledSubreddits');
+    if (enabledSubredditsTbody) {
+        enabledSubredditsTbody.innerHTML = ""; // Clear the existing content
 
-        // Display UI elements for managing enabled subreddits
         enabledSubreddits.forEach(function (subreddit) {
-            addSubredditUI(enabledSubredditsDiv, subreddit);
+            addSubredditRow(enabledSubredditsTbody, subreddit);
         });
     }
 }
 
-function addSubredditUI(container, subreddit) {
-    var subredditDiv = document.createElement('div');
-    subredditDiv.className = 'subreddit-item';
+function addSubredditRow(container, subreddit) {
+    var row = document.createElement('tr');
+    var subredditCell = document.createElement('td');
+    subredditCell.textContent = subreddit;
+    subredditCell.className = 'px-4 py-2 border-main border-b';
 
-    var subredditText = document.createElement('div');
-    subredditText.textContent = subreddit;
-    subredditText.className = 'subreddit-text';
-    subredditText.addEventListener('click', function () {
-        startInlineEditing(subredditText, subreddit);
+    var actionsCell = document.createElement('td');
+    actionsCell.className = 'px-4 py-2 border-main border-b';
+
+    var removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.className = 'remove-button';
+    removeButton.addEventListener('click', function () {
+        removeFromSubredditList(subreddit);
+        container.removeChild(row);
     });
 
-    var editButton = document.createElement('div');
-    editButton.textContent = 'Edit';
-    editButton.className = 'edit-button';
-    editButton.addEventListener('click', function () {
-        startInlineEditing(subredditText, subreddit);
-    });
-
-    var deleteButton = document.createElement('div');
-    deleteButton.textContent = 'Delete';
-    deleteButton.className = 'delete-button';
-    deleteButton.addEventListener('click', function () {
-        deleteSubreddit(subredditDiv, subreddit);
-    });
-
-    subredditDiv.appendChild(subredditText);
-    subredditDiv.appendChild(editButton);
-    subredditDiv.appendChild(deleteButton);
-
-    container.appendChild(subredditDiv);
+    actionsCell.appendChild(removeButton);
+    row.appendChild(subredditCell);
+    row.appendChild(actionsCell);
+    container.appendChild(row);
 }
 
-
-function deleteSubreddit(subredditDiv, subreddit) {
-    chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
-        var enabledSubreddits = data.enabledSubreddits;
-
-        var index = enabledSubreddits.indexOf(subreddit);
-        if (index !== -1) {
-            enabledSubreddits.splice(index, 1);
-            chrome.storage.sync.set({ enabledSubreddits: enabledSubreddits }, function () {
-                subredditDiv.remove();
-                updateButtonState(enabledSubreddits);
-            });
-        }
-    });
-}
-
-
-function startInlineEditing(subredditText, originalText) {
-    var inputElement = document.createElement('input');
-    inputElement.type = 'text';
-    inputElement.value = originalText;
-    inputElement.className = 'inline-edit-input';
-
-    inputElement.addEventListener('blur', function () {
-        disableInlineEditing(subredditText, inputElement.value, originalText);
-    });
-
-    subredditText.textContent = '';
-    subredditText.appendChild(inputElement);
-    inputElement.focus();
-}
-
-function disableInlineEditing(subredditText, newText, originalText) {
-    if (newText.trim() === "") {
-        // If the new text is empty, revert to the original text
-        newText = originalText;
-    }
-
-    // Save changes
-    chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
-        var enabledSubreddits = data.enabledSubreddits;
-
-        var index = enabledSubreddits.indexOf(originalText);
-        if (index !== -1) {
-            enabledSubreddits[index] = newText;
-            chrome.storage.sync.set({ enabledSubreddits: enabledSubreddits }, function () {
-                loadSubredditUI();
-                updateButtonState(enabledSubreddits);
-            });
-        }
-    });
-}
-
-function toggleAddEdit() {
-    var addEnabledSubredditBtn = document.getElementById('addEnabledSubredditBtn');
+function addEnabledSubreddits() {
     var subredditInput = document.getElementById('addEnabledSubreddit');
+    if (subredditInput) {
+        var subreddits = subredditInput.value.trim().split(',').map(s => s.trim()).filter(Boolean);
+        if (subreddits.length > 0) {
+            chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
+                var enabledSubreddits = data.enabledSubreddits;
 
-    if (addEnabledSubredditBtn && subredditInput) {
-        if (addEnabledSubredditBtn.textContent === 'Add Subreddit') {
-            addSubreddit(subredditInput);
-        } else {
-            // Change button text to 'Add Subreddit' and disable textarea
-            addEnabledSubredditBtn.textContent = 'Add Subreddit';
-            subredditInput.disabled = false;
+                subreddits.forEach(function (subreddit) {
+                    if (!enabledSubreddits.includes(subreddit)) {
+                        enabledSubreddits.push(subreddit);
+                    }
+                });
+
+                chrome.storage.sync.set({ enabledSubreddits: enabledSubreddits }, function () {
+                    subredditInput.value = ""; // Clear the input field
+                    loadSubredditUI(); // Reload UI to display the updated list
+                });
+            });
         }
     }
 }
 
-function addSubreddit(subredditInput) {
-    var subredditText = subredditInput.value.trim();
-    if (subredditText !== "") {
-        chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
-            var enabledSubreddits = data.enabledSubreddits || [];
-            var subredditArray = subredditText.split(',');
+function removeFromSubredditList(subreddit) {
+    chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
+        var enabledSubreddits = data.enabledSubreddits.filter(function (item) {
+            return item !== subreddit;
+        });
 
-            subredditArray.forEach(function (subreddit) {
-                subreddit = subreddit.trim();
-                if (!enabledSubreddits.includes(subreddit)) {
-                    enabledSubreddits.push(subreddit);
-                }
-            });
+        chrome.storage.sync.set({ enabledSubreddits: enabledSubreddits });
+    });
+}
 
-            chrome.storage.sync.set({ enabledSubreddits: enabledSubreddits }, function () {
-                loadSubredditUI();
-                subredditInput.value = "";
-                updateButtonState(enabledSubreddits);
-            });
+function toggleEditMode() {
+    var editButton = document.getElementById('editSubredditsBtn');
+    var tableRows = document.querySelectorAll('#enabledSubreddits tr');
+
+    if (editButton.textContent === 'Edit') {
+        editButton.textContent = 'Save Changes';
+        tableRows.forEach(function (row) {
+            var subredditCell = row.children[0];
+            var subredditName = subredditCell.textContent;
+
+            subredditCell.innerHTML = `<input type="text" value="${subredditName}" class="w-full border-main border rounded-md py-1 px-2">`;
+        });
+    } else {
+        editButton.textContent = 'Edit';
+        var updatedSubreddits = [];
+
+        tableRows.forEach(function (row) {
+            var subredditInput = row.children[0].querySelector('input');
+            var subredditName = subredditInput.value.trim();
+            if (subredditName) {
+                updatedSubreddits.push(subredditName);
+            }
+        });
+
+        chrome.storage.sync.set({ enabledSubreddits: updatedSubreddits }, function () {
+            loadSubredditUI(); // Reload UI to display the updated list
         });
     }
 }
 
-function editSubreddits(subredditInput) {
-    var newSubreddits = subredditInput.value.trim();
-    if (newSubreddits !== "") {
-        chrome.storage.sync.set({ enabledSubreddits: [newSubreddits] }, function () {
-            loadSubredditUI();
-            updateButtonState([newSubreddits]);
-        });
-    }
-}
-
-function updateButtonState(enabledSubreddits) {
-    var addEnabledSubredditBtn = document.getElementById('addEnabledSubredditBtn');
-    if (addEnabledSubredditBtn) {
-        addEnabledSubredditBtn.textContent = enabledSubreddits.length > 0 ? 'Edit Subreddits' : 'Add Subreddit';
-    }
+function searchSubreddits(query) {
+    var tableRows = document.querySelectorAll('#enabledSubreddits tr');
+    tableRows.forEach(function (row) {
+        var subredditName = row.children[0].textContent.toLowerCase();
+        if (subredditName.includes(query.toLowerCase())) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
 }
 
 function transformRedditPage(tabId, url) {
     if (url.includes('www.reddit.com')) {
         var subredditName = getSubredditName(url);
 
-        chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
+        chrome.storage.sync.get({ enabledSubreddits: [] }, function(data) {
             var enabledSubreddits = data.enabledSubreddits || [];
 
             if (isSubredditEnabled(subredditName, enabledSubreddits) && isRedditPostURL(url)) {
