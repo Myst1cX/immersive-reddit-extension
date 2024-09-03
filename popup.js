@@ -1,6 +1,7 @@
 // popup.js
 
 document.addEventListener('DOMContentLoaded', function () {
+    loadDarkModeState(); // Load dark mode state
     loadSubredditUI();
 
     document.getElementById('addEnabledSubredditBtn').addEventListener('click', function () {
@@ -25,6 +26,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Add this function to save the dark mode state
+function saveDarkModeState(isDarkMode) {
+    chrome.storage.sync.set({ darkMode: isDarkMode });
+}
+
+// Add this function to load the dark mode state
+function loadDarkModeState() {
+    chrome.storage.sync.get({ darkMode: false }, function (data) {
+        if (data.darkMode) {
+            document.body.classList.remove('light-mode');
+            document.body.classList.add('dark-mode');
+            document.getElementById('toggleDarkModeBtn').src = 'icons/lightbulb48.png'; // Adjust this if you have a different icon for dark mode
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.body.classList.add('light-mode');
+            document.getElementById('toggleDarkModeBtn').src = 'icons/lightbulb48.png'; // Adjust this if you have a different icon for light mode
+        }
+    });
+}
+
 function toggleDarkMode() {
     const body = document.body;
     const darkModeIcon = 'icons/lightbulb48.png'; // Assuming this is the dark mode icon
@@ -34,12 +55,15 @@ function toggleDarkMode() {
         body.classList.remove('light-mode');
         body.classList.add('dark-mode');
         document.getElementById('toggleDarkModeBtn').src = darkModeIcon; // Change to dark mode icon
+        saveDarkModeState(true); // Save dark mode state
     } else {
         body.classList.remove('dark-mode');
         body.classList.add('light-mode');
         document.getElementById('toggleDarkModeBtn').src = lightModeIcon; // Change to light mode icon
+        saveDarkModeState(false); // Save light mode state
     }
 }
+
 
 function loadSubredditUI() {
     chrome.storage.sync.get({ enabledSubreddits: [] }, function (data) {
