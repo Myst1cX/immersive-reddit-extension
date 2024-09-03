@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Immersive Reader",
-  "version": "3.0",
+  "name": "Readdit",
+  "version": "4.0",
   "description": "Add 'read://' prefix to Reddit URLs",
   "permissions": [
     "activeTab",
@@ -24,7 +24,7 @@
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
-    "default_title": "Immersive Reader",
+    "default_title": "Readdit",
     "default_popup": "popup.html"
   },
   "icons": {
