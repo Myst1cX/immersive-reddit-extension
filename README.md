@@ -19,9 +19,11 @@ The user can choose for which subreddits they wish to enable the extension. Mult
 This version is based on the v3.00.
 THE EXTENSION UI HAS BEEN COMPLETELY REVAMPED.
 NEW FEATURES:
-1. Search bar: Allows the user to easily find a certain subreddit inside their added subreddits list. 
-The update makes it easier to "Edit" or "Remove" said subreddit.
-2. Light/Dark mode switch:
+Search bar: 
+Allows the user to easily find a certain subreddit inside their added subreddits list. 
+Edit button: 
+Allows editing multiple added subreddits at once.
+Light/Dark mode switch:
 Works by pressing on the lighbulb icon in the top right corner.
 
 ## Screenshots
