@@ -23,7 +23,7 @@ Allows the user to easily find a certain subreddit inside their added subreddits
 >Edit button:
 Allows editing multiple added subreddits at once.                                        
 >Light/Dark mode switch:
-Works by pressing on the lighbulb icon in the top right corner.
+Press on the lightbulb icon in the top right corner.
 
 
 ## Screenshots
