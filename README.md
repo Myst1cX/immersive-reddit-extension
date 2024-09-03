@@ -48,12 +48,12 @@ You can add multiple at once by separating each input with a comma.
 You don't need to put r/ in front of each subreddit.                                   
 Spaces between commas are optional.                         
 >INPUT EXAMPLE:                                          "nosleep,DarkTales,gtripp14"                                               
->If you make a typo, you can always edit or delete the subreddit from the list.
->Use the "Search bar" to easily find a certain subreddit inside your added subreddits list.
->Click on the "Lightbulb" to toggle between light and dark mode.   
->Head to your chosen subreddit.
->NOTE:                                          
-The extension does not transform subreddits themselves, only their posts. Once you click on a post inside the subreddit, it will automatically open in Microsoft Edge's Immersive Reader mode.      
+>If you make a typo, you can always edit or delete the subreddit from the list.            
+>Use the "Search bar" to easily find a certain subreddit inside your added subreddits list.                               
+>Click on the "Lightbulb" to toggle between light and dark mode.                       
+>Head to your chosen subreddit.               
+>NOTE:                                                                                 
+The extension does not transform subreddits themselves, only their posts. Once you click on a post inside the subreddit, it will automatically open in Microsoft Edge's Immersive Reader mode.           
 >Enjoy the improved reading experience :)
 
 
