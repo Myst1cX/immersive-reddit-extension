@@ -18,11 +18,11 @@ The user can choose for which subreddits they wish to enable the extension. Mult
 #### READDIT STABLE (v4.00)
 THE EXTENSION UI HAS BEEN REVAMPED.
 NEW FEATURES ARE LISTED BELOW ⭐
-Search bar:
+>Search bar:
 Allows the user to easily find a certain subreddit inside their added subreddits list.
-Edit button:
-Allows editing multiple added subreddit s at once.
-Light/Dark mode switch:
+>Edit button:
+Allows editing multiple added subreddits at once.
+>Light/Dark mode switch:
 Works by pressing on the lighbulb icon in the top right corner.
 
 
@@ -53,8 +53,7 @@ NOTE: The extension does not transform subreddits themselves, only their posts. 
 ## Roadmap
 
 1. Interface improvement
-2. Dark mode
-3. Ability to import/export the list of subreddits. 
+2. Ability to import/export the list of subreddits. 
 
 ## Development
 
