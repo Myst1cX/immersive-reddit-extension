@@ -32,12 +32,12 @@ Works by pressing on the lighbulb icon in the top right corner.
 
 ## Installation
 
-1. Clone the repository or download the source code.
-2. Open Microsoft Edge browser.
-3. Go to `edge://extensions`.
-4. Enable the "Developer mode" toggle switch.
-5. Click on "Load unpacked" button and select the folder containing the extension source code.
-6. The extension should now be installed and ready to use.
+>Clone the repository or download the source code.                                  
+>Open Microsoft Edge browser.                 
+>Go to `edge://extensions`.                  
+>Enable the "Developer mode" toggle switch.                                                          
+>Click on "Load unpacked" button and select the folder containing the extension source code.                                  
+>The extension should now be installed and ready to use.                                  
 
 ## Usage
 
@@ -59,18 +59,18 @@ The extension does not transform subreddits themselves, only their posts. Once y
 
 ## Roadmap
 
-1. Interface improvement
-2. Ability to import/export the list of subreddits. 
+>Interface improvement,                       
+>Ability to import/export the list of subreddits. 
 
 ## Development
 
 To further develop and customize the extension:
 
-1. Fork the repository and clone it to your local machine.
-2. Make changes to the source code using your preferred code editor.
-3. Test the changes by loading the unpacked extension in your browser (follow the installation instructions above).
-4. If everything looks good, commit your changes and push them to your forked repository.
-5. Create a pull request to the original repository.
+>Fork the repository and clone it to your local machine.                                
+>Make changes to the source code using your preferred code editor.                                               
+>Test the changes by loading the unpacked extension in your browser (follow the installation instructions above).                  
+>If everything looks good, commit your changes and push them to your forked repository.                                      
+>Create a pull request to the original repository.                                    
 
 ## Contributing
 
