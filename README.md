@@ -19,9 +19,9 @@ Support for other browsers is not coming.
 THE EXTENSION UI HAS BEEN REVAMPED.
 NEW FEATURES ARE LISTED BELOW ⭐
 >Search bar:
-Allows the user to easily find a certain subreddit inside their added subreddits list.
+Allows the user to easily find a certain subreddit inside their added subreddits list.                                         
 >Edit button:
-Allows editing multiple added subreddits at once.
+Allows editing multiple added subreddits at once.                                        
 >Light/Dark mode switch:
 Works by pressing on the lighbulb icon in the top right corner.
 
